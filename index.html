@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yitzchak Shmalo</title>
+<meta name="description" content="Yitzchak Shmalo, mathematician at the Einstein Institute of Mathematics, Hebrew University of Jerusalem. Random matrix theory, deep learning, dynamical systems, K-theory, and AI for open problems.">
+<meta property="og:title" content="Yitzchak Shmalo">
+<meta property="og:description" content="Mathematician. Random matrices, deep learning, chaos, and the mathematics of machines that remember.">
+<meta property="og:image" content="assets/portrait_square.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23101623'/%3E%3Ccircle cx='24' cy='36' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='50' cy='22' r='5' fill='%23e0a24a'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="index.html">Yitzchak Shmalo</a>
+  <ul>
+    <li><a href="index.html" aria-current="page">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="videos.html">Videos</a></li>
+    <li><a href="ai.html">AI &amp; open problems</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div></nav>
+
+<header class="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Einstein Institute of Mathematics &middot; Hebrew University of Jerusalem</div>
+      <h1><span>Yitzchak Shmalo</span><span class="thin">mathematician</span></h1>
+      <p class="tag">I study what random matrices know about neural networks, how chaos becomes the rule rather than the exception, and how to build machines that do mathematics without forgetting what they learned yesterday.</p>
+      <ul class="links">
+        <li><a href="https://arxiv.org/search/?searchtype=author&query=Shmalo%2C+Yitzchak" target="_blank" rel="noopener">arXiv</a></li>
+        <li><a href="https://scholar.google.com/citations?user=wV2TqwsAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+        <li><a href="https://www.researchgate.net/profile/Yitzchak-Shmalo-2" target="_blank" rel="noopener">ResearchGate</a></li>
+        <li><a href="https://www.linkedin.com/in/yshmalo/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://www.youtube.com/@TheThinkingAgnostic" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a href="https://github.com/yspennstate" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="mailto:Yitzchak.Shmalo@mail.huji.ac.il">Email</a></li>
+      </ul>
+      <p class="hint">The dots above are a Marchenko&ndash;Pastur spectrum. Move the pointer past the right edge and watch the signal separate from the noise.</p>
+    </div>
+    <div class="portrait"><img src="assets/portrait.jpg" alt="Yitzchak Shmalo" width="600" height="800"></div>
+  </div>
+</header>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="eyebrow">What I work on</div>
+    <h2>Five threads, one habit</h2>
+    <p class="lede">The habit is to take a question people answer by experiment or by folklore, find the mathematical object underneath it, and prove something sharp about that object. The threads are where the habit has taken me.</p>
+    <div class="grid three" id="theme-cards" style="margin-top:28px"></div>
+  </div>
+</section>
+
+<section class="section" id="interests">
+  <div class="wrap two-col">
+    <div class="prose">
+      <div class="eyebrow">What I am interested in</div>
+      <h2>Noise, signal, and the line between them</h2>
+      <p>A trained neural network is a stack of matrices, and each of those matrices looks, to a random matrix theorist, like a familiar thing: a small amount of structure buried in a lot of noise. The Marchenko&ndash;Pastur law says exactly what the noise part should look like. Everything outside that bulk is signal. That one observation runs through most of my work on deep learning. It gives a pruning rule that makes networks smaller and often more accurate, a way to watch randomness leave the weights during training, and theorems about when accuracy is stable and when a classifier must have adversarial neighbors.</p>
+      <p>The same instinct, pushed into pure probability, produces the questions I find hardest to put down. How small can the least singular value of a Gaussian matrix become if an adversary picks which rows to keep? What happens to spiked models when the rank of the signal grows with the dimension? Can the Matrix Spencer conjecture be settled for structured families like Toeplitz and Hankel matrices? These have sharp answers, and the answers turn out to matter for phase retrieval, for compressed sensing, and for the capacity of the binary perceptron, whose Krauth&ndash;M&eacute;zard threshold I recently verified with computer-checked certificates.</p>
+      <p>Before random matrices there was chaos. My master's work with Marian Gidea found fixed points and horseshoes by labeling the corners of cubes, a Sperner-type argument that replaces index theory with pictures. I have kept returning to that combinatorial way of seeing: a proof of Atanassov's conjecture, a combinatorial Kakutani theorem, and lately a series of papers showing that in the space of all non-autonomous interval systems, full-blown chaos is not rare but generic.</p>
+      <p>And there is a topological thread, from my time with Emil Prodan: bulk-boundary correspondence for resonator arrays and for the universal Chern Hamiltonians of Higson and Prodan, proved through the K-theory of C*-algebras and, most recently, extended to surfaces with boundary by doubling the surface and jamming the seam.</p>
+      <p>What ties these together is a taste for problems where the answer is a number or a threshold, and a preference for proofs that a computer can replay.</p>
+    </div>
+    <div>
+      <div class="pull">"Slight differences in initial conditions can cause drastic changes in the long-term results."</div>
+      <p class="small muted">How I described chaos in 2017, when the master's work was first presented at Llavefest in Barcelona. Fixed points and periodic orbits are the things that stay put, and that is still the shortest description of why I like the subject.</p>
+      <div class="card" style="margin-top:28px">
+        <div class="eyebrow">Right now</div>
+        <p style="margin-bottom:.6em"><b>Mathematics with memory.</b> I am building a system in which AI agents work on open problems while carrying a persistent, verified memory of what has already been tried, proved, refuted and learned. It is a work in progress and will be released soon. <a href="ai.html">Read about it.</a></p>
+        <p style="margin-bottom:.6em"><b>Talks on film.</b> Every paper on this site will get a short recorded talk on my <a href="https://www.youtube.com/@TheThinkingAgnostic" target="_blank" rel="noopener">YouTube channel</a>. <a href="videos.html">See the list.</a></p>
+        <p style="margin:0"><b>Papers.</b> <span id="paper-count"></span> papers and preprints, all downloadable. <a href="research.html">Browse them.</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="featured-section">
+  <div class="wrap">
+    <div class="eyebrow">A few places to start</div>
+    <h2>Selected papers</h2>
+    <div id="featured" data-ids="2310.03165,2607.06249,2607.11010,1706.08960,1805.10629,2606.02608" style="margin-top:8px"></div>
+    <p style="margin-top:22px"><a class="btn primary" href="research.html">All papers, with PDFs</a></p>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap two-col">
+    <div>
+      <div class="eyebrow">About</div>
+      <h2>Where I have been</h2>
+      <ul class="timeline">
+        <li><span class="when">now</span><span class="what"><b>Postdoctoral researcher</b>, Einstein Institute of Mathematics, The Hebrew University of Jerusalem<span class="small">Mathematical foundations of AI, random matrix theory, dynamical systems, operator algebras and K-theory.</span></span></li>
+        <li><span class="when">2019&ndash;2025</span><span class="what"><b>Ph.D. in Mathematics</b>, Pennsylvania State University<span class="small">Advisor: Leonid Berlyand. Dissertation: <i>Applications of Random Matrix Theory to Deep Learning</i>. Teaching excellence recognition, 2022.</span></span></li>
+        <li><span class="when">summer 2024</span><span class="what"><b>Research intern</b>, NASA Jet Propulsion Laboratory, Pasadena<span class="small">Neural emulators of radiative-transfer models for imaging spectroscopy (EMIT, AVIRIS), with random-matrix pruning and regularization.</span></span></li>
+        <li><span class="when">2017&ndash;2019</span><span class="what"><b>M.A. in Mathematics</b> and graduate instructor, Yeshiva University<span class="small">Advisor: Marian Gidea. Thesis on combinatorial detection of fixed points, periodic orbits and symbolic dynamics. Research with Emil Prodan on K-theory and topological resonators.</span></span></li>
+        <li><span class="when">2016</span><span class="what"><b>B.A. in Philosophy and Mathematics</b>, magna cum laude, Yeshiva University<span class="small">Advisor: Antonella Marini. Thesis: <i>Proofs of the Cantor&ndash;Bernstein Theorem</i>. Awards in both mathematics and philosophy.</span></span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="eyebrow">Talks</div>
+      <ul class="timeline">
+        <li><span class="when">Aug 2024</span><span class="what">Random matrix theory and deep learning, <b>NASA JPL</b>, Pasadena</span></li>
+        <li><span class="when">Jun 2024</span><span class="what">Random matrix theory and Vision Transformers, <b>Caltech</b>, Pasadena</span></li>
+        <li><span class="when">Jun 2017</span><span class="what">Combinatorial detection of fixed points, <b>Llavefest</b>, Barcelona</span></li>
+      </ul>
+      <div class="eyebrow" style="margin-top:32px">Awards</div>
+      <ul class="timeline">
+        <li><span class="when">2022</span><span class="what">Teaching Excellence Recognition, Penn State</span></li>
+        <li><span class="when">2020</span><span class="what">Troxell Scholarship in Mathematics, Penn State</span></li>
+        <li><span class="when">2019</span><span class="what">Pettit Scholarship in Science, Penn State</span></li>
+        <li><span class="when">2017</span><span class="what">Teaching Excellence, Yeshiva University</span></li>
+        <li><span class="when">2016</span><span class="what">Joseph Gunner Memorial Award for Excellence in Mathematics; George and Bertha Fisch Award for Excellence in the Study of Philosophy, Yeshiva University</span></li>
+      </ul>
+      <img src="assets/photo_arbel.jpg" alt="Yitzchak Shmalo on Mount Arbel, above the Sea of Galilee" style="width:100%;border-radius:16px;margin-top:32px;box-shadow:var(--shadow)">
+      <p class="small muted" style="margin-top:8px">Mount Arbel, above the Kinneret.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h2>Say hello</h2>
+    <p class="lede">Einstein Institute of Mathematics, Edmond J. Safra Campus, Givat Ram, Jerusalem 9190401, Israel.</p>
+    <ul class="links">
+      <li><a href="mailto:Yitzchak.Shmalo@mail.huji.ac.il">Yitzchak.Shmalo@mail.huji.ac.il</a></li>
+      <li><a href="mailto:yitzchak.shmalo@gmail.com">yitzchak.shmalo@gmail.com</a></li>
+      <li><a href="https://www.linkedin.com/in/yshmalo/" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="https://mathematics.huji.ac.il/people/yitzchak-shmalo" target="_blank" rel="noopener">Institute page</a></li>
+    </ul>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <span>&copy; Yitzchak Shmalo</span>
+  <span><a href="research.html">Research</a> &middot; <a href="videos.html">Videos</a> &middot; <a href="ai.html">AI &amp; open problems</a></span>
+</div></footer>
+
+<script src="papers.js"></script>
+<script src="abstracts.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

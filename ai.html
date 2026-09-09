@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI and open problems - Yitzchak Shmalo</title>
+<meta name="description" content="Using AI agents with a persistent, verified mathematical memory to work on open problems. The math brain: a work in progress by Yitzchak Shmalo, to be released soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23101623'/%3E%3Ccircle cx='24' cy='36' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='50' cy='22' r='5' fill='%23e0a24a'/%3E%3C/svg%3E">
+<style>
+  .brainviz { width: 100%; height: auto; display: block; border-radius: var(--radius); border: 1px solid var(--line); background: var(--card); box-shadow: var(--shadow); }
+  .ledger { width: 100%; border-collapse: collapse; font-size: .95rem; margin: 10px 0 0; }
+  .ledger th, .ledger td { text-align: left; padding: 10px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+  .ledger th { font-family: var(--mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-ink); font-weight: 500; }
+  .ledger tr:last-child td { border-bottom: 1px solid var(--line); }
+  .tag { display: inline-block; font-family: var(--mono); font-size: .72rem; padding: 2px 8px; border-radius: 6px; border: 1px solid var(--line); color: var(--ink-2); }
+  .brain-pre { font-family: var(--mono); font-size: .8rem; line-height: 1.5; white-space: pre-wrap; word-break: break-word; background: var(--paper-2); border-radius: 10px; padding: 14px 16px; margin: 0; color: var(--ink-2); overflow-x: auto; }
+  .brain-pre .k { color: var(--accent-ink); }
+  .brain-pre .h { color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="index.html">Yitzchak Shmalo</a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="videos.html">Videos</a></li>
+    <li><a href="ai.html" aria-current="page">AI &amp; open problems</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div></nav>
+
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">AI and open problems</div>
+    <h1 style="font-size:clamp(2rem,5vw,3.6rem)">Using AI to prove open problems</h1>
+    <p class="lede">The idea is simple to state. Mathematics has thousands of well-posed open problems sitting in the back pages of monographs and surveys, most of them untouched since they were written down. AI systems can now do serious mathematics. So build a system that reads those problems, works on them, referees its own work, and never forgets what it learned, then let it run, every day, and advance the field.</p>
+    <p><span class="wip">Work in progress &middot; release soon</span></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="prose">
+      <div class="eyebrow">The main idea</div>
+      <h2>A mathematician that never forgets</h2>
+      <p>Most of the difficulty in research is not the hard step in the middle of a proof. It is knowing what has been tried, what is already known, which tools worked on which kinds of problem, and which mistakes you personally keep making. A human mathematician accumulates that over a career. A language model starts from zero every time it is asked a question.</p>
+      <p>So the project has two halves. The first is a pipeline for open problems: harvest them from the literature with exact sources, attempt them with AI agents, referee each attempt adversarially, check the finite parts by machine, and record the outcome honestly, including the failures. The second is a memory, which I call the math brain, that every agent reads before it starts and writes to when it finishes. The memory is what makes the pipeline compound. An agent working on a Toeplitz problem today knows what an agent learned about Hankel matrices last month, and knows the three ways an earlier attempt went wrong.</p>
+      <p>The goal is not a leaderboard. It is to settle problems that matter to the people who posed them, publish the ones that survive prior-art checks, and hand the community a tool that makes its own open-problem lists shorter.</p>
+    </div>
+    <div>
+      <div class="card">
+        <div class="eyebrow">In one picture</div>
+        <p><b>Problems in.</b> Open questions from monographs and surveys in probability, random matrices and dynamics, each with its source and page.</p>
+        <p><b>Agents work.</b> A fleet of AI agents attempts them, with the brain's memory of related results and past mistakes loaded first.</p>
+        <p><b>Referees break.</b> A second agent tries to break every argument. Finite cores go to Lean 4 or a numerical certificate.</p>
+        <p style="margin:0"><b>Memory grows.</b> What was learned, proved, refuted or excluded goes back into the brain, and the next attempt starts further along.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="prose">
+      <div class="eyebrow">The problem</div>
+      <h2>Strong solvers, no memory</h2>
+      <p>Put a frontier model to work on a research problem and its failures are rarely arithmetic. In the audits I have run, the calculations were almost always right. What goes wrong is subtler and more human: a conclusion phrased more strongly than its derivation supports, a citation that matches a neighbouring object rather than the one in the question, a result counted as new because no search turned up an earlier proof, an inequality that is secretly Markov's inequality in disguise.</p>
+      <p>Every one of those is caught by reading, not by computing, and every one of them recurs, because a stateless model makes the same mistake fresh each morning. That is the gap. The solver is strong; the memory is missing; and without memory nothing accumulates.</p>
+
+      <div class="eyebrow" style="margin-top:2.2em">The math brain</div>
+      <h2>What I am building</h2>
+      <p>The system I call the math brain is a memory that AI agents read at the start of every task and write back to at the end. It is not a vector database with a chat interface. It is closer to what a working mathematician carries around: a few thousand notes, an association graph between them, a sense of which results are solid and which are provisional, and a set of scars, the specific ways things went wrong before, that fire on their own when a new situation resembles an old one.</p>
+      <p>Three ideas do most of the work.</p>
+      <h3>1. Every note carries its own doubt</h3>
+      <p>A note is stored with a status: verified, provisional, superseded by a later note, or an owner-stated rule. When it surfaces, the agent sees the status and how often that note has been useful before. A note is a hint, not a verdict. Obeying notes blindly turns out to be as harmful as ignoring them; the system is calibrated so that it fires less and means more.</p>
+      <h3>2. Recall is a walk, not a lookup</h3>
+      <p>Recall mixes lexical search, semantic search and a short random walk on the association graph. The walk is deliberately short: an unbounded walk mixes to a query-independent law and everything looks like a hub. The useful memory lives before mixing. That is a small theorem about diffusions with killing, and it is the reason the retrieval works.</p>
+      <h3>3. It consolidates while nobody is working</h3>
+      <p>Overnight, a consolidation pass reads the day, merges duplicates, promotes provisional notes that were confirmed, demotes ones that were contradicted, and scores the predictions the system made about what would happen next. Predictions that miss become curiosity: questions the brain carries forward. This is the part that makes it a brain rather than a filing cabinet.</p>
+
+      <div class="eyebrow" style="margin-top:2.2em">The pipeline</div>
+      <h2>How an open problem moves through it</h2>
+      <p>The problems come from the literature: the open-problem sections of monographs and surveys in probability, random matrix theory and dynamics, each recorded with its source and exact locator so that nothing is attributed to the wrong author. Intake is followed by attempts, and attempts by adversarial refereeing, in which a separate agent is asked to break the argument rather than admire it. Where a claim has a finite core, it is checked in Lean 4 or by a numerical certificate. Where it does not, it is re-derived independently, and the write-up says so. Prior art is checked by comparing the objects by name, not by whether a search came back empty.</p>
+      <p>Results are labelled honestly. Settled means a written proof that survived refereeing. Partial means the header names what is still unproved. Excluded means the literature already had it, with the reference. The labels are the product as much as the theorems are.</p>
+    </div>
+
+    <div>
+      <svg class="brainviz" viewBox="0 0 520 420" role="img" aria-label="A schematic of the math brain: memory notes connected in a graph, a recall walk, and a consolidation loop">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+        </defs>
+        <g stroke="var(--line)" stroke-width="1.2" fill="none">
+          <path d="M90 120 L170 80 L250 130 L330 90 L410 140 M170 80 L200 190 L250 130 M330 90 L300 200 L410 140 M200 190 L300 200 M90 120 L120 220 L200 190 M300 200 L360 290 L250 320 L120 220 M250 320 L410 140" />
+        </g>
+        <g fill="var(--ink)">
+          <circle cx="90" cy="120" r="7"/><circle cx="170" cy="80" r="9"/><circle cx="250" cy="130" r="8"/><circle cx="330" cy="90" r="7"/><circle cx="410" cy="140" r="9"/>
+          <circle cx="200" cy="190" r="10"/><circle cx="300" cy="200" r="8"/><circle cx="120" cy="220" r="7"/><circle cx="360" cy="290" r="7"/><circle cx="250" cy="320" r="8"/>
+        </g>
+        <g fill="var(--accent)">
+          <circle cx="200" cy="190" r="16" opacity=".25"/><circle cx="250" cy="130" r="13" opacity=".25"/><circle cx="300" cy="200" r="13" opacity=".25"/>
+        </g>
+        <g stroke="var(--spike)" stroke-width="2.2" fill="none" stroke-dasharray="4 4" marker-end="url(#arr)" style="color:var(--spike)">
+          <path d="M60 40 C 120 60, 150 150, 196 184"/>
+          <path d="M200 190 C 220 160, 235 150, 246 136"/>
+          <path d="M250 130 C 270 160, 285 180, 296 194"/>
+        </g>
+        <g font-family="ui-monospace, Menlo, monospace" font-size="11" fill="var(--muted)">
+          <text x="24" y="32">query</text>
+          <text x="150" y="60">verified</text>
+          <text x="404" y="170">provisional</text>
+          <text x="230" y="345">superseded</text>
+          <text x="190" y="215">scar</text>
+        </g>
+        <g fill="none" stroke="var(--accent)" stroke-width="1.4">
+          <path d="M470 330 a 34 34 0 1 1 -1 -0.5" marker-end="url(#arr)" style="color:var(--accent)"/>
+        </g>
+        <text x="392" y="392" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="var(--accent-ink)">nightly consolidation</text>
+        <text x="24" y="400" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="var(--muted)">short walk on the association graph: recall before mixing</text>
+      </svg>
+      <p class="small muted" style="margin-top:8px">Notes, their links, and a recall walk that stops before it mixes. The colour of a node is its status.</p>
+
+      <div class="card" style="margin-top:28px">
+        <div class="eyebrow">What comes out</div>
+        <table class="ledger">
+          <tr><th>Label</th><th>Meaning</th></tr>
+          <tr><td><span class="tag">settled</span></td><td>A written proof that survived an adversarial referee pass and, where a finite core exists, a machine check.</td></tr>
+          <tr><td><span class="tag">partial</span></td><td>Progress with the unproved part named in the header, so nobody mistakes it for a theorem.</td></tr>
+          <tr><td><span class="tag">excluded</span></td><td>Already in the literature. The reference is recorded and the problem is closed as prior art.</td></tr>
+          <tr><td><span class="tag">refuted</span></td><td>A stated conjecture with a counterexample, checked independently.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">The loop, end to end</div>
+    <div class="pipeline">
+      <div class="step"><h4>Intake</h4><p>Open problems harvested from monographs and surveys, each with source, page and exact wording.</p></div>
+      <div class="step"><h4>Recall</h4><p>The brain surfaces what it knows: related results, prior attempts, and the scars from similar problems.</p></div>
+      <div class="step"><h4>Attempt</h4><p>Agents work the problem. Every claim is written with its size of doubt attached.</p></div>
+      <div class="step"><h4>Referee</h4><p>A second agent tries to break the argument. Finite cores go to Lean 4 or a numerical certificate.</p></div>
+      <div class="step"><h4>Remember</h4><p>What was learned, including what failed, is written back. Overnight the brain consolidates it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">Inside the brain</div>
+    <h2>What a piece of it looks like</h2>
+    <p class="lede">Three real excerpts from the running system. The first is a note the brain wrote after an agent's proof was found wrong. The second is the rule it compiled from that note, which now fires on its own whenever a new proof takes the same step. The third is what an agent sees when it asks the brain a question.</p>
+
+    <div class="grid two" style="margin-top:28px;align-items:start">
+      <div class="card">
+        <div class="eyebrow">1 &middot; A memory note</div>
+        <pre class="brain-pre"><span class="k">name:</span> proof_steps_need_derived_joint_structure
+<span class="k">type:</span> feedback     <span class="k">status:</span> provisional
+<span class="k">description:</span> A proof states conditional expectations
+  multiply without joint independence; tower-property
+  products and conditional bounds need a derived
+  dependence argument.
+
+<span class="h">FAILURE MECHANISM.</span> A proof states that conditional
+expectations multiply without deriving the required
+joint structure. Conditional mean zero, pairwise
+information, or a bound conditioned on a different
+sigma-field for each factor does not imply independence.
+
+<span class="h">EVIDENCE.</span> In the stored martingale CLT proof the first
+characteristic-function identity was false. For
+independent fair signs U, W, let X1 = U and
+X2 = (1+U)W: these are martingale differences. At
+t = pi/2 the true characteristic function of the sum
+is -i; the proposed product is zero. The standard CLT
+itself is correct. 48 exact finite-tree controls are
+retained with the correction.
+
+<span class="h">PREVENTION.</span> Write the conditioning sigma-field and the
+measurable factors on every step. Derive the identity
+on a small dependent example first.</pre>
+        <p class="small muted" style="margin:10px 0 0">A note records the mechanism of a mistake, a concrete counterexample, and what to do instead. The status line says how far to trust it.</p>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="eyebrow">2 &middot; The reflex compiled from it</div>
+          <pre class="brain-pre"><span class="h">FIRE WHEN</span> a proof states that a product of
+  conditional characteristic functions equals the
+  characteristic function of the sum merely because
+  the increments are martingale differences; or says
+  "therefore the conditional bounds multiply into a
+  joint probability" with no filtration or
+  independence argument.
+
+<span class="h">DO NOT FIRE WHEN</span> independence or a conditional-
+  independence structure is explicitly established,
+  or the dependence step is honestly left as an
+  open obligation.
+
+<span class="h">HINT</span> judged on-domain 1 of 6 times it fired.
+  A fire is a question, not a verdict.</pre>
+          <p class="small muted" style="margin:10px 0 0">Reflexes surface in the agent's context while it works, unasked. Each one carries its own precision, so a noisy reflex is weighed less than a sharp one.</p>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <div class="eyebrow">3 &middot; A recall</div>
+          <pre class="brain-pre"><span class="k">&gt; recall</span> "product of conditional bounds
+           negative dependence conditioning"
+<span class="muted">lexical 36 seeds | graph on | semantic on</span>
+1.00  audit_conditioning_does_not_imply_negative_dependence
+      [VERIFIED] FIRE WHEN a proof states that
+      conditioning independent coordinates on their
+      sum makes them negatively dependent ...
+1.00  audit_martingale_conditional_product_failure
+      [VERIFIED] the proof multiplies conditional
+      expectations without joint independence
+0.97  proof_steps_need_derived_joint_structure
+      [PROVISIONAL] ... needs a derived dependence
+      argument
+0.62  bernoulli_two_thirds_two_copy_density
+      [PROVISIONAL] supersedes an earlier note</pre>
+          <p class="small muted" style="margin:10px 0 0">One ranked list from three retrievers. Every hit carries its status, and a note that was superseded says by what.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap two-col">
+    <div class="prose">
+      <div class="eyebrow">Where it stands</div>
+      <h2>Early results, still under review</h2>
+      <p>The system has been running daily on my own research for several months and on a growing ledger of open problems in probability, random matrices and dynamics since the summer. Several problems from that ledger now have written proofs or counterexamples that passed the internal referee, a few of them with machine-checked cores. I am not listing them here yet. The remaining step, the one that separates a result from a claim, is the prior-art check: pulling the papers that cite each source and reading for the problem by name. That is being done now, and the results will appear here and on arXiv as it finishes.</p>
+      <p>The framework itself, with the memory, the recall, the consolidation and the benchmark used to measure whether the brain actually helps, will be released under a documented provenance audit. Soon means when that audit is clean, not before.</p>
+    </div>
+    <div class="callout">
+      <div class="eyebrow">Follow along</div>
+      <p>I will announce the release on my <a href="https://www.youtube.com/@TheThinkingAgnostic" target="_blank" rel="noopener">YouTube channel</a> and on <a href="https://www.linkedin.com/in/yshmalo/" target="_blank" rel="noopener">LinkedIn</a>. If you work on AI for mathematics, on associative memory, or on the open problems of a subject you know well and would like to see them attempted, <a href="mailto:Yitzchak.Shmalo@mail.huji.ac.il">write to me</a>.</p>
+      <p class="small muted" style="margin:0">Related papers: <a href="research.html#p-2607.11010">the storage capacity of the Ising perceptron</a>, where the outstanding numerical conditions were verified with replayable certificates, and the <a href="research.html#rmtdl">random-matrix work on deep networks</a> that this project grew out of.</p>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <span>&copy; Yitzchak Shmalo</span>
+  <span><a href="index.html">Home</a> &middot; <a href="research.html">Research</a> &middot; <a href="videos.html">Videos</a></span>
+</div></footer>
+
+</body>
+</html>

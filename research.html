@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research - Yitzchak Shmalo</title>
+<meta name="description" content="Papers and preprints by Yitzchak Shmalo, with downloadable PDFs: random matrix theory and deep learning, high-dimensional probability, dynamical systems, K-theory, combinatorics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23101623'/%3E%3Ccircle cx='24' cy='36' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='50' cy='22' r='5' fill='%23e0a24a'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="index.html">Yitzchak Shmalo</a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html" aria-current="page">Research</a></li>
+    <li><a href="videos.html">Videos</a></li>
+    <li><a href="ai.html">AI &amp; open problems</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div></nav>
+
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">Research</div>
+    <h1 style="font-size:clamp(2rem,5vw,3.4rem)">Papers and preprints</h1>
+    <p class="lede">Every paper below has its PDF on this site, so nothing is behind a login. Where a version exists on arXiv or in a journal, the links are next to it; the ResearchGate link goes to the posted version there. Published papers are listed with their journal; everything else is a preprint. Click "Abstract" to read the paper's own abstract, or "In short" for a one-paragraph summary.</p>
+    <ul class="links" style="margin-top:6px">
+      <li><a href="https://arxiv.org/search/?searchtype=author&query=Shmalo%2C+Yitzchak" target="_blank" rel="noopener">arXiv listing</a></li>
+      <li><a href="https://scholar.google.com/citations?user=wV2TqwsAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+      <li><a href="https://www.researchgate.net/profile/Yitzchak-Shmalo-2" target="_blank" rel="noopener">ResearchGate</a></li>
+    </ul>
+
+    <ul class="filters" id="filters" style="margin-top:34px">
+      <li><button type="button" data-theme="all" aria-pressed="true">All</button></li>
+      <li><button type="button" data-theme="rmtdl" aria-pressed="false">Random matrices &amp; deep learning</button></li>
+      <li><button type="button" data-theme="rmt" aria-pressed="false">Random matrices &amp; probability</button></li>
+      <li><button type="button" data-theme="dyn" aria-pressed="false">Dynamical systems</button></li>
+      <li><button type="button" data-theme="top" aria-pressed="false">Topology &amp; K-theory</button></li>
+      <li><button type="button" data-theme="comb" aria-pressed="false">Combinatorics</button></li>
+    </ul>
+
+    <div id="research-list"></div>
+
+    <div class="theme-head" style="margin-top:56px"><h2>Theses</h2></div>
+    <ul class="timeline" id="theses">
+      <li><span class="when">2025</span><span class="what"><b>Applications of Random Matrix Theory to Deep Learning.</b> Ph.D. dissertation, Pennsylvania State University.<span class="small">Advisor: Leonid Berlyand.</span></span></li>
+      <li><span class="when">2017</span><span class="what"><b>Combinatorial Approach to Detection of Fixed Points, Periodic Orbits, and Symbolic Dynamics.</b> M.A. thesis, Yeshiva University.<span class="small">Advisor: Marian Gidea. Published with Gidea in Discrete and Continuous Dynamical Systems.</span></span></li>
+      <li><span class="when">2016</span><span class="what"><b>Proofs of the Cantor&ndash;Bernstein Theorem.</b> B.A. honors thesis, Yeshiva University.<span class="small">Advisor: Antonella Marini.</span></span></li>
+    </ul>
+
+    <p class="small muted" style="margin-top:36px">Anchor links: append <code>#rmtdl</code>, <code>#rmt</code>, <code>#dyn</code>, <code>#top</code> or <code>#comb</code> to this page's address to open a theme directly, or <code>#p-&lt;arXiv id&gt;</code> for one paper.</p>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <span>&copy; Yitzchak Shmalo</span>
+  <span><a href="index.html">Home</a> &middot; <a href="videos.html">Videos</a> &middot; <a href="ai.html">AI &amp; open problems</a></span>
+</div></footer>
+
+<script src="papers.js"></script>
+<script src="abstracts.js"></script>
+<script src="site.js"></script>
+<script>
+  // give each theme block an id so #rmtdl etc. work
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".theme-block").forEach((b) => { b.id = b.dataset.theme; });
+    if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) setTimeout(() => el.scrollIntoView({ block: "start" }), 80); }
+  });
+</script>
+</body>
+</html>

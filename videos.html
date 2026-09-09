@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Videos - Yitzchak Shmalo</title>
+<meta name="description" content="Recorded talks and short videos on the papers of Yitzchak Shmalo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23101623'/%3E%3Ccircle cx='24' cy='36' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='50' cy='22' r='5' fill='%23e0a24a'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="index.html">Yitzchak Shmalo</a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="videos.html" aria-current="page">Videos</a></li>
+    <li><a href="ai.html">AI &amp; open problems</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</div></nav>
+
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">Videos</div>
+    <h1 style="font-size:clamp(2rem,5vw,3.4rem)">Research you can watch</h1>
+    <div class="two-col" style="margin-top:8px">
+      <div class="prose">
+        <p class="lede">A paper is written for the referee. Almost nobody else reads it, including most mathematicians in neighbouring fields, and that is a loss on both sides: the ideas stay locked up, and the people who might use them never hear about them. I am turning my research, and the research I find most exciting, into videos that a graduate student, an engineer, or a curious person with some mathematics can follow from beginning to end.</p>
+        <p>The rule for every video is the same. Start with the question in plain words, and say why anyone cares. Show the obvious approach and exactly where it breaks. Then show the idea that works, with the pictures the paper did not have room for, and end with what is still open. No theorem is stated before you know why you would want it.</p>
+        <h3>What the channel will carry</h3>
+        <p><b>One video per paper.</b> Every paper on this site gets a talk, ten to twenty minutes, with the PDF linked underneath. The cards below track which ones exist.</p>
+        <p><b>How the proof works.</b> Longer, blackboard-style walks through a single argument for people who want the details: the Marchenko&ndash;Pastur pruning theorem, the sharp exponent for least singular values, the doubling-and-jamming construction.</p>
+        <p><b>AI doing mathematics.</b> Episodes on the <a href="ai.html">math brain</a> project: what happens when AI agents are pointed at open problems, what they get right, what they get wrong, and what a machine-checked proof actually looks like. This is the part of the channel where the research is happening as it is being filmed.</p>
+        <p><b>Open problems, explained.</b> Short pieces on a single open problem from probability, random matrices or dynamics: what it asks, why it is hard, and what would count as progress. The point is to make the frontier visible to people who are not yet standing on it.</p>
+        <ul class="links">
+          <li><a class="btn primary" href="https://www.youtube.com/@TheThinkingAgnostic" target="_blank" rel="noopener">YouTube channel</a></li>
+          <li><a class="btn" href="https://www.youtube.com/@TheThinkingAgnostic?sub_confirmation=1" target="_blank" rel="noopener">Subscribe to be told when one lands</a></li>
+        </ul>
+      </div>
+      <div class="callout">
+        <div class="eyebrow">Recorded talks</div>
+        <ul class="timeline">
+          <li><span class="when">Aug 2024</span><span class="what">Random matrix theory and deep learning, NASA JPL</span></li>
+          <li><span class="when">Jun 2024</span><span class="what">Random matrix theory and Vision Transformers, Caltech</span></li>
+          <li><span class="when">Jun 2017</span><span class="what">Combinatorial detection of fixed points, Llavefest, Barcelona</span></li>
+        </ul>
+        <p class="small muted" style="margin:12px 0 0">Recordings of these will be added here when available.</p>
+      </div>
+    </div>
+
+    <div class="grid three" style="margin-top:40px">
+      <div class="card"><div class="eyebrow">Who it is for</div><p style="margin:0">Students deciding what to work on, researchers in adjacent fields, engineers who use these tools without the theory, and anyone who wants to see what current mathematics looks like from the inside.</p></div>
+      <div class="card"><div class="eyebrow">What it is not</div><p style="margin:0">Not a lecture course and not a popular-science gloss. Real theorems, real proofs, at the pace of a good seminar talk, with the pictures and the honesty about what is unfinished.</p></div>
+      <div class="card"><div class="eyebrow">Why video</div><p style="margin:0">A proof has a shape, and shapes are easier to show than to write. Twenty minutes with a drawing does what forty pages cannot: it lets you see why the argument had to go that way.</p></div>
+    </div>
+
+    <div class="theme-head" style="margin-top:56px"><h2>One video per paper</h2><span class="muted small">newest first</span></div>
+    <p class="muted" style="max-width:44em">Cards without a video yet say so. When a talk is recorded the card becomes the player.</p>
+    <div class="video-grid" id="video-grid" style="margin-top:22px"></div>
+  </div>
+</section>
+
+<footer><div class="wrap">
+  <span>&copy; Yitzchak Shmalo</span>
+  <span><a href="index.html">Home</a> &middot; <a href="research.html">Research</a> &middot; <a href="ai.html">AI &amp; open problems</a></span>
+</div></footer>
+
+<script src="papers.js"></script>
+<script src="abstracts.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
