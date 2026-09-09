@@ -87,7 +87,7 @@ html { overflow-x: clip; }
 .hero h1 span { display: block; }
 .hero h1 .thin { color: var(--muted); font-style: italic; font-weight: 300; }
 .hero .tag { font-size: 1.15rem; color: var(--ink-2); max-width: 36em; }
-.portrait { position: relative; justify-self: center; width: min(100%, 380px); aspect-ratio: 3 / 4; }
+.portrait { position: relative; justify-self: center; width: min(100%, 360px); aspect-ratio: 1 / 1; }
 .portrait img { width: 100%; height: 100%; object-fit: cover; border-radius: 22px; box-shadow: var(--shadow); display: block; }
 .portrait::before {
   content: ""; position: absolute; inset: -14px -14px auto auto; width: 50%; height: 50%;
