@@ -42,6 +42,15 @@ const PAPERS = [
     abstract: "In this work, we present some applications of random matrix theory for the training of deep neural networks. Recently, random matrix theory (RMT) has been applied to the overfitting problem in deep learning. Specifically, it has been shown that the spectrum of the weight layers of a deep neural network (DNN) can be studied and understood using techniques from RMT. In this work, these RMT techniques will be used to determine which and how many singular values should be removed from the weight layers of a DNN during training, via singular value decomposition (SVD), so as to reduce overfitting and increase accuracy. We show the results on a simple DNN model trained on MNIST. In general, these techniques may be applied to any fully connected layer of a pretrained DNN to reduce the number of parameters in the layer while preserving and sometimes increasing the accuracy of the DNN."
   },
   {
+    id: "dissertation", theme: "rmtdl", year: 2025,
+    title: "Applications of random matrix theory to deep learning",
+    authors: "Yitzchak Shmalo",
+    venue: "Ph.D. dissertation, Pennsylvania State University, August 2025. Advisor: Leonid Berlyand",
+    pdf: "shmalo_dissertation_2025.pdf",
+    note: "The whole random-matrix story in one place: pruning, stability of accuracy, and what the spectrum of a weight matrix says about training.",
+    abstract: "In this thesis we explore the application of random matrix theory to deep learning, in particular to the pruning of deep neural networks and to the stability of their accuracy during training."
+  },
+  {
     id: "2503.01922", theme: "rmtdl", year: 2025,
     title: "Pruning deep neural networks via a combination of the Marchenko-Pastur distribution and regularization",
     authors: "Leonid Berlyand, Theo Bourdais, Houman Owhadi, Yitzchak Shmalo",
