@@ -44,7 +44,7 @@
         <li><a href="https://github.com/yspennstate" target="_blank" rel="noopener">GitHub</a></li>
         <li><a href="mailto:Yitzchak.Shmalo@mail.huji.ac.il">Email</a></li>
       </ul>
-      <p class="hint">Marchenko&ndash;Pastur law, with four outliers. Move the pointer to the right of the bulk.</p>
+      <p class="hint">Marchenko&ndash;Pastur law with four outliers; drag to the right of the bulk.</p>
     </div>
     <div class="portrait"><img src="assets/portrait.jpg" alt="Yitzchak Shmalo" width="800" height="800"></div>
   </div>
@@ -64,10 +64,10 @@
     <div class="prose">
       <div class="eyebrow">In more detail</div>
       <h2>Noise, signal, and the line between them</h2>
-      <p>A trained neural network is a stack of matrices, and to a random matrix theorist each of them looks like a familiar object: a small amount of structure buried in noise. The Marchenko&ndash;Pastur law says exactly what the noise part should look like, so everything outside that bulk is signal. That observation runs through most of my work on deep learning. It gives a pruning rule that makes networks smaller and often more accurate, which we have taken as far as Vision Transformers trained on ImageNet; a way to watch randomness leave the weights during training; and theorems about when accuracy is stable, when a random ReLU network is globally non-expansive, and when a classifier must have adversarial neighbours.</p>
-      <p>Pushed into probability proper, the same instinct leads to the questions I find hardest to put down. How small can the least singular value of a Gaussian matrix become when an adversary chooses which rows to keep, and what does the answer say about the stability of phase retrieval? What happens to spiked models when the rank of the signal grows with the dimension? Can the Matrix Spencer conjecture be settled for Toeplitz and Hankel families, and what are the moments of their limit laws? These have sharp answers, and some of them carry over to the capacity of the binary perceptron, whose Krauth&ndash;M&eacute;zard threshold I verified with computer-checked certificates.</p>
-      <p>The third thread is operator algebras and K-theory, from my time with Emil Prodan: bulk-boundary correspondence for resonator arrays patterned by a dynamical system, and the universal Chern Hamiltonians of Higson and Prodan, which I extended to surfaces with boundary by doubling the surface and jamming the seam, with the interface class computed in the Roe algebra.</p>
-      <p>Alongside these I keep a foot in dynamical systems and combinatorics, where I started: finding fixed points and horseshoes by labelling the corners of cubes, and showing that in the space of all non-autonomous interval systems, full chaos is generic. Where randomness enters, as in the edge-of-chaos transition of a randomly initialized autoencoder, that work joins the main line.</p>
+      <p>A trained neural network is a stack of matrices, and each one is structure buried in noise. The Marchenko&ndash;Pastur law says what the noise looks like, so whatever lies outside that bulk is signal. Most of my work on deep learning comes from that: a pruning rule that makes networks smaller and often more accurate, used on Vision Transformers trained on ImageNet; a way to track randomness leaving the weights during training; and theorems on when accuracy is stable, when a random ReLU network is non-expansive, and when a classifier must have adversarial neighbours.</p>
+      <p>In probability the same questions get sharper. How small can the least singular value of a Gaussian matrix be made by choosing which rows to keep, and what does that say about phase retrieval? What happens to spiked models when the rank grows with the dimension? Does the Matrix Spencer conjecture hold for Toeplitz and Hankel matrices, and what are the moments of their limit laws? Related methods verified the Krauth&ndash;M&eacute;zard capacity of the binary perceptron with computer-checked certificates.</p>
+      <p>The third thread, from my time with Emil Prodan, is operator algebras and K-theory: bulk-boundary correspondence for resonator arrays patterned by a dynamical system, and the Higson&ndash;Prodan universal Chern Hamiltonians extended to surfaces with boundary by doubling and jamming, with the interface class computed in the Roe algebra.</p>
+      <p>I also work in dynamical systems and combinatorics, where I started: fixed points and horseshoes found by labelling the corners of cubes, and full chaos shown to be generic among non-autonomous interval systems.</p>
     </div>
     <div>
       <div class="card">
