@@ -1,65 +1,40 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Videos - Yitzchak Shmalo</title>
-<meta name="description" content="Recorded talks on the papers of Yitzchak Shmalo: random matrix theory, deep learning, operator algebras, and AI for open problems.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23101623'/%3E%3Ccircle cx='24' cy='36' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='50' cy='22' r='5' fill='%23e0a24a'/%3E%3C/svg%3E">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Lectures — Yitzchak Shmalo</title>
+<meta content="Recorded talks on the papers of Yitzchak Shmalo: random matrix theory, deep learning, operator algebras, and AI for open problems." name="description"/>
+
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+
+<link href="style.css" rel="stylesheet"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23101623'/%3E%3Ccircle cx='24' cy='36' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23f7f4ee'/%3E%3Ccircle cx='50' cy='22' r='5' fill='%23e0a24a'/%3E%3C/svg%3E" rel="icon"/>
 </head>
 <body>
-
 <nav class="nav"><div class="wrap">
-  <a class="brand" href="index.html">Yitzchak Shmalo</a>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="research.html">Research</a></li>
-    <li><a href="videos.html" aria-current="page">Videos</a></li>
-    <li><a href="ai.html">AI &amp; open problems</a></li>
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
-  </ul>
+<a class="brand" href="index.html">Yitzchak Shmalo</a>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="research.html">Research</a></li>
+<li><a aria-current="page" href="videos.html">Videos</a></li>
+<li><a href="ai.html">AI &amp; open problems</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul>
 </div></nav>
+<main>
 
-<section class="section">
-  <div class="wrap">
-    <div class="eyebrow">Videos</div>
-    <h1 style="font-size:clamp(2rem,5vw,3.4rem)">Research you can watch</h1>
-    <div class="two-col" style="margin-top:8px">
-      <div class="prose">
-        <p class="lede">A paper is written for the referee, and almost nobody else reads it, including mathematicians in the next field over. The ideas stay locked up and the people who could use them never hear about them. I am recording talks on my papers, and on the research around them, for a graduate student, an engineer, or anyone with some mathematics who wants to follow an argument from the question to the theorem.</p>
-        <p>Each talk starts with the question in plain words and why it matters, shows the obvious approach and where it breaks, then the idea that works, with the pictures a paper has no room for, and ends with what is still open.</p>
-        <h3>What is planned</h3>
-        <p><b>Talks on the papers.</b> Ten to twenty minutes each, with the paper linked underneath.</p>
-        <p><b>How the proof works.</b> Longer, blackboard-style walks through one argument: the Marchenko&ndash;Pastur pruning theorem, the sharp exponent for least singular values, the doubling-and-jamming construction.</p>
-        <p><b>AI doing mathematics.</b> Episodes on the <a href="ai.html">open-problems project</a>: what happens when AI agents are pointed at open problems, what they get right, what they get wrong, and what a machine-checked proof looks like.</p>
-        <p><b>Open problems, explained.</b> Short pieces on a single open problem in probability or random matrices: what it asks, why it is hard, and what would count as progress.</p>
-        <ul class="links">
-          <li><a class="btn primary" data-channel href="https://www.youtube.com/channel/UCsqMyA2aeE-GF_JqE_x_sHg" target="_blank" rel="noopener">YouTube channel</a></li>
-        </ul>
-      </div>
-      <div class="callout">
-        <div class="eyebrow">Who it is for</div>
-        <p>Students deciding what to work on, researchers in adjacent fields, engineers who use these tools without the theory, and anyone curious about what current mathematics looks like from the inside.</p>
-        <div class="eyebrow" style="margin-top:18px">What it is not</div>
-        <p style="margin:0">Not a lecture course and not popular science. Real theorems and real proofs at the pace of a good seminar talk, with the pictures, and with what is unfinished left visible.</p>
-      </div>
-    </div>
-
-    <div class="theme-head" style="margin-top:56px"><h2>Talks by paper</h2></div>
-    <div class="video-grid" id="video-grid" style="margin-top:22px"></div>
-  </div>
+<section class="section wrap">
+  <h1>Lectures</h1>
+  <p>I’m recording lectures on my papers and their proofs for my <a data-channel href="https://www.youtube.com/channel/UCsqMyA2aeE-GF_JqE_x_sHg">YouTube channel</a>.</p>
+  <div id="video-grid" class="video-grid"></div>
 </section>
-
+</main>
 <footer><div class="wrap">
-  <span>&copy; Yitzchak Shmalo</span>
-  <span><a href="index.html">Home</a> &middot; <a href="research.html">Research</a> &middot; <a href="ai.html">AI &amp; open problems</a></span>
+<span>© Yitzchak Shmalo</span>
+<span><a href="index.html">Home</a> · <a href="research.html">Research</a> · <a href="ai.html">AI &amp; open problems</a></span>
 </div></footer>
-
 <script src="papers.js"></script>
 <script src="abstracts.js"></script>
 <script src="links.js"></script>

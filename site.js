@@ -25,14 +25,14 @@
     const lk = L[p.id] || {};
     const rg = lk.rg || p.rg;
     const acts = [];
-    if (p.pdf) acts.push(`<a class="pdf" href="papers/${esc(p.pdf)}" download>${ICON.pdf} PDF</a>`);
-    if (p.arxiv) acts.push(`<a href="https://arxiv.org/abs/${esc(p.arxiv)}" target="_blank" rel="noopener">${ICON.arxiv} arXiv</a>`);
-    if (p.doi) acts.push(`<a href="https://doi.org/${esc(p.doi)}" target="_blank" rel="noopener">${ICON.link} Journal</a>`);
-    if (rg) acts.push(`<a href="${esc(rg)}" target="_blank" rel="noopener">${ICON.link} ResearchGate</a>`);
-    if (lk.ssrn) acts.push(`<a href="${esc(lk.ssrn)}" target="_blank" rel="noopener">${ICON.link} SSRN</a>`);
-    if (lk.rsq) acts.push(`<a href="${esc(lk.rsq)}" target="_blank" rel="noopener">${ICON.link} Research Square</a>`);
-    if (p.video) acts.push(`<a href="https://www.youtube.com/watch?v=${esc(p.video)}" target="_blank" rel="noopener">${ICON.play} Video</a>`);
-    if (abs) acts.push(`<button type="button" data-toggle="abs">${ICON.text} ${label}</button>`);
+    if (p.pdf) acts.push(`<a class="pdf" href="papers/${esc(p.pdf)}" download>PDF</a>`);
+    if (p.arxiv) acts.push(`<a href="https://arxiv.org/abs/${esc(p.arxiv)}" target="_blank" rel="noopener">arXiv</a>`);
+    if (p.doi) acts.push(`<a href="https://doi.org/${esc(p.doi)}" target="_blank" rel="noopener">Journal</a>`);
+    if (rg) acts.push(`<a href="${esc(rg)}" target="_blank" rel="noopener">ResearchGate</a>`);
+    if (lk.ssrn) acts.push(`<a href="${esc(lk.ssrn)}" target="_blank" rel="noopener">SSRN</a>`);
+    if (lk.rsq) acts.push(`<a href="${esc(lk.rsq)}" target="_blank" rel="noopener">Research Square</a>`);
+    if (p.video) acts.push(`<a href="https://www.youtube.com/watch?v=${esc(p.video)}" target="_blank" rel="noopener">Video</a>`);
+    if (abs) acts.push(`<button type="button" data-toggle="abs" aria-expanded="false" aria-controls="abs-${esc(p.id)}">${label}</button>`);
     return `
       <article class="paper" data-theme="${esc(p.theme)}" id="p-${esc(p.id)}">
         <div class="year">${esc(p.year)}</div>
@@ -40,9 +40,9 @@
           <h3>${esc(p.title)}</h3>
           <div class="authors">${boldSelf(p.authors)}</div>
           ${p.venue ? `<div class="venue">${esc(p.venue)}</div>` : (p.arxiv ? `<div class="venue">arXiv:${esc(p.arxiv)}</div>` : "")}
-          ${p.note ? `<p class="note">${esc(p.note)}</p>` : ""}
+
           <div class="actions">${acts.join("")}</div>
-          ${abs ? `<div class="abstract"><span class="lbl">${label}</span>${esc(abs)}</div>` : ""}
+          ${abs ? `<div class="abstract" id="abs-${esc(p.id)}"><span class="lbl">${label}</span>${esc(abs)}</div>` : ""}
         </div>
       </article>`;
   }
@@ -51,7 +51,8 @@
     root.addEventListener("click", (e) => {
       const b = e.target.closest("[data-toggle=abs]");
       if (!b) return;
-      b.closest(".paper").querySelector(".abstract").classList.toggle("open");
+      const open = b.closest(".paper").querySelector(".abstract").classList.toggle("open");
+      b.setAttribute("aria-expanded", String(open));
     });
   }
 
@@ -60,7 +61,7 @@
     if (!list.length) return "";
     return `<div class="theme-block" id="${t}" data-theme="${t}">
       <div class="theme-head"><h2>${esc(THEMES[t].name)}</h2><span class="muted small">${list.length} paper${list.length > 1 ? "s" : ""}</span></div>
-      <p class="blurb muted">${esc(THEMES[t].blurb)}</p>
+
       ${list.map(paperHTML).join("")}
     </div>`;
   }
@@ -122,7 +123,7 @@
     const byPaper = {};
     (typeof VIDEOS !== "undefined" ? VIDEOS : []).forEach((v) => { byPaper[v.paper] = v; });
     const order = Object.keys(THEMES);
-    const list = PAPERS.slice().sort((a, b) => (order.indexOf(a.theme) - order.indexOf(b.theme)) || (b.year - a.year));
+    const list = PAPERS.filter((p) => byPaper[p.id] && /^[A-Za-z0-9_-]{11}$/.test(byPaper[p.id].youtube)).sort((a, b) => (order.indexOf(a.theme) - order.indexOf(b.theme)) || (b.year - a.year));
     root.innerHTML = list.map((p) => {
       const v = byPaper[p.id];
       const frame = v

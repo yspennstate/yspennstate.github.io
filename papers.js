@@ -18,7 +18,7 @@ const PAPERS = [
     title: "Enhancing accuracy in deep learning using random matrix theory",
     authors: "Leonid Berlyand, Etienne Sandier, Yitzchak Shmalo, Lei Zhang",
     venue: "Journal of Machine Learning 3 (2024), no. 4, 347-412",
-    pdf: "2310.03165.pdf", arxiv: "2310.03165",
+    pdf: "2310.03165.pdf", arxiv: "2310.03165", doi: "10.4208/jml.231220",
     rg: "https://www.researchgate.net/publication/374475045",
     note: "Prune the singular values that look like noise under the Marchenko-Pastur law and the network gets smaller and, often, more accurate.",
     abstract: "We explore the applications of random matrix theory (RMT) in the training of deep neural networks (DNNs), focusing on layer pruning that reduces the number of DNN parameters (weights). Our numerical results show that this pruning leads to a drastic reduction of parameters while not reducing the accuracy of DNNs and convolutional neural networks (CNNs). Moreover, pruning the fully connected DNNs actually increases the accuracy and decreases the variance for random initializations. Our numerics indicate that this enhancement in accuracy is due to the simplification of the loss landscape. We next provide rigorous mathematical underpinning of these numerical results by proving the RMT-based Pruning Theorem. Our results offer valuable insights into the practical application of RMT for the creation of more efficient and accurate deep-learning models."
