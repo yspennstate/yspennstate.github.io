@@ -92,6 +92,15 @@ const PAPERS = [
     abstract: "We study operator learning through a decomposition into a neural mean and a kernel correction. The neural network captures the bulk of the operator, and a kernel method fitted to the residual supplies the correction and an error estimate. We give conditions under which the corrected estimator improves on either component alone and illustrate the method on parametric partial differential equations."
   },
   {
+    id: "relu-stability", theme: "rmtdl", year: 2026,
+    title: "Global stability of deep Gaussian ReLU networks",
+    authors: "Yitzchak Shmalo",
+    venue: "Preprint (ResearchGate)",
+    pdf: "global_stability_deep_gaussian_relu_networks.pdf",
+    note: "The global Lipschitz constant of a random ReLU network, at every width and depth, and the variance threshold where it stops being non-expansive.",
+    abstract: "The global Euclidean Lipschitz constant of a square ReLU network with independent Gaussian weights of variance sigma^2/n admits an explicit probability bound at every width and depth. The bound follows from a sign-symmetry identity that expresses weighted activation-pattern realizability through the number of orthants met by a formal preactivation subspace, combined with Gaussian radial moments. For each sigma^2 below 2, sufficiently large fixed depth gives global non-expansiveness with exponentially high probability as the width tends to infinity; above 2, every fixed depth is expansive with exponentially high probability. The fixed-depth variance thresholds therefore converge to 2, with a certified lower bound. Biases with independent symmetric coordinates satisfy the same stability bound, and the symmetry identity gives exact finite matrix formulas for expected activation-region counts."
+  },
+  {
     id: "adv-fragility", theme: "rmtdl", year: 2026,
     title: "Constructive adversarial fragility of deep neural networks, ResNets, and Vision Transformers",
     authors: "Yitzchak Shmalo",
@@ -161,6 +170,15 @@ const PAPERS = [
     pdf: "matrix_spencer_toeplitz_hankel_finite_entropy_lifts.pdf", rg: RG_PROFILE,
     note: "The Matrix Spencer conjecture proved for matrix families that lift to a finite-entropy structure, Toeplitz and Hankel among them.",
     abstract: "The Matrix Spencer conjecture asks whether for every collection of n self-adjoint n by n matrices of operator norm at most one there is a sign vector whose signed sum has norm of order the square root of n. We prove the conjectured bound for Toeplitz and Hankel families and, more generally, for classes admitting a finite-entropy lift."
+  },
+  {
+    id: "toeplitz-moments", theme: "rmt", year: 2026,
+    title: "Exact higher moments of the limiting spectral distributions of random Toeplitz and Hankel matrices",
+    authors: "Yitzchak Shmalo",
+    venue: "Preprint (ResearchGate)",
+    pdf: "exact_higher_moments_toeplitz_hankel_limit_laws.pdf",
+    note: "The moments of the Toeplitz and Hankel limit laws, computed exactly through order fourteen, and a theorem on which pairings carry volume one.",
+    abstract: "The limiting spectral distributions of random symmetric Toeplitz and Hankel matrices have been known to exist for two decades but remain unidentified; their published moments stop at order eight. We compute the moments exactly through order fourteen for both ensembles in exact rational arithmetic, each as a sum of volumes of rational polytopes indexed by pair partitions, and prove that a pairing has volume one if and only if it is non-crossing."
   },
   {
     id: "toeplitz-avg", theme: "rmt", year: 2026,
@@ -303,12 +321,13 @@ const PAPERS = [
   }
 ];
 
+// group "main" is the focus of the site; group "other" is listed separately.
 const THEMES = {
-  rmtdl: { name: "Random matrices and deep learning", blurb: "Weight matrices are signal plus noise. The Marchenko-Pastur law tells you which is which, and that single observation gives pruning methods, stability theorems and a way to read what training is doing to a network." },
-  rmt:   { name: "Random matrices and high-dimensional probability", blurb: "Least singular values, spikes of growing rank, Toeplitz and Hankel spectra, the capacity of the binary perceptron. Sharp constants, and proofs that a computer can replay." },
-  dyn:   { name: "Dynamical systems and chaos", blurb: "Horseshoes, windows and Baire category. In the space of all non-autonomous systems, full chaos is not the exception but the rule." },
-  top:   { name: "Topology, K-theory and operator algebras", blurb: "Bulk-boundary correspondence for patterned resonators and universal Chern Hamiltonians, proved through K-theory of C*-algebras." },
-  comb:  { name: "Combinatorics and fixed points", blurb: "Sperner's lemma and what it can carry: Kakutani, Atanassov's conjecture, and a purely combinatorial way to find fixed points." }
+  rmtdl: { group: "main", name: "Random matrices and deep learning", blurb: "A weight matrix is signal plus noise, and the Marchenko-Pastur law says which part is which. That observation gives pruning methods for networks up to Vision Transformers, theorems on the stability of accuracy and on adversarial examples, and a way to read what training does to a network." },
+  rmt:   { group: "main", name: "Random matrices and high-dimensional probability", blurb: "Least singular values of row submatrices and phase retrieval, spikes of growing rank, the Matrix Spencer conjecture for Toeplitz and Hankel families, the moments of their limit laws, and the capacity of the binary perceptron." },
+  top:   { group: "main", name: "Operator algebras, K-theory and topological matter", blurb: "Bulk-boundary correspondence for resonator arrays patterned by a dynamical system, and universal Chern Hamiltonians extended to surfaces with boundary, through the K-theory of C*-algebras and Roe algebras." },
+  dyn:   { group: "other", name: "Dynamical systems", blurb: "Horseshoes, windows and Baire category in the space of non-autonomous systems." },
+  comb:  { group: "other", name: "Combinatorics and fixed points", blurb: "Sperner's lemma and what it carries: Kakutani's theorem, Atanassov's conjecture, and a combinatorial way to locate fixed points." }
 };
 
 const THESES = [
@@ -321,4 +340,11 @@ const THESES = [
 // Leave the list empty and the videos page shows the "coming soon" cards for every paper.
 const VIDEOS = [];
 
-const CHANNEL_URL = "https://www.youtube.com/@TheThinkingAgnostic";
+const CHANNEL_URL = "https://www.youtube.com/channel/UCsqMyA2aeE-GF_JqE_x_sHg";
+
+// Code and data.
+const CODE = [
+  { name: "RMT_pruning_ViT", url: "https://github.com/yspennstate/RMT_pruning_ViT", what: "Marchenko-Pastur pruning of Vision Transformers, the code behind the pruning papers and the dissertation." },
+  { name: "RMT_pruning_2", url: "https://github.com/yspennstate/RMT_pruning_2", what: "The fully connected and convolutional pruning experiments, as a notebook." },
+  { name: "DNNaic canonical simulation dataset", url: "https://doi.org/10.5281/zenodo.21233067", what: "Simulated data for ADZE-based introgression prediction with deep networks (Zenodo)." }
+];

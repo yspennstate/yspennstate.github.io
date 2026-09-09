@@ -1,9 +1,10 @@
-/* Shared behaviour: paper rendering, filters, video cards, and the hero spectrum. */
+/* Paper rendering, filters, video cards, and the hero spectrum. */
 
 (function () {
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const L = (typeof LINKS !== "undefined") ? LINKS : {};
 
   const ICON = {
     pdf: '<svg viewBox="0 0 24 24"><path d="M6 2h8l6 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V9h5.5L13 3.5zM8 13h8v1.6H8V13zm0 3.2h8v1.6H8v-1.6z"/></svg>',
@@ -20,12 +21,16 @@
   function paperHTML(p) {
     const verbatim = (typeof ABSTRACTS !== "undefined") && ABSTRACTS[p.id];
     const abs = verbatim || p.abstract || "";
-    const label = verbatim ? "Abstract" : "In short";
+    const label = verbatim ? "Abstract" : "Summary";
+    const lk = L[p.id] || {};
+    const rg = lk.rg || p.rg;
     const acts = [];
     if (p.pdf) acts.push(`<a class="pdf" href="papers/${esc(p.pdf)}" download>${ICON.pdf} PDF</a>`);
     if (p.arxiv) acts.push(`<a href="https://arxiv.org/abs/${esc(p.arxiv)}" target="_blank" rel="noopener">${ICON.arxiv} arXiv</a>`);
     if (p.doi) acts.push(`<a href="https://doi.org/${esc(p.doi)}" target="_blank" rel="noopener">${ICON.link} Journal</a>`);
-    if (p.rg) acts.push(`<a href="${esc(p.rg)}" target="_blank" rel="noopener">${ICON.link} ResearchGate</a>`);
+    if (rg) acts.push(`<a href="${esc(rg)}" target="_blank" rel="noopener">${ICON.link} ResearchGate</a>`);
+    if (lk.ssrn) acts.push(`<a href="${esc(lk.ssrn)}" target="_blank" rel="noopener">${ICON.link} SSRN</a>`);
+    if (lk.rsq) acts.push(`<a href="${esc(lk.rsq)}" target="_blank" rel="noopener">${ICON.link} Research Square</a>`);
     if (p.video) acts.push(`<a href="https://www.youtube.com/watch?v=${esc(p.video)}" target="_blank" rel="noopener">${ICON.play} Video</a>`);
     if (abs) acts.push(`<button type="button" data-toggle="abs">${ICON.text} ${label}</button>`);
     return `
@@ -42,25 +47,32 @@
       </article>`;
   }
 
-  function renderResearch(root) {
-    const order = ["rmtdl", "rmt", "dyn", "top", "comb"];
-    let html = "";
-    for (const t of order) {
-      const list = PAPERS.filter((p) => p.theme === t).sort((a, b) => b.year - a.year);
-      if (!list.length) continue;
-      html += `<div class="theme-block" data-theme="${t}">
-        <div class="theme-head"><h2>${esc(THEMES[t].name)}</h2><span class="muted small">${list.length} paper${list.length > 1 ? "s" : ""}</span></div>
-        <p class="blurb muted">${esc(THEMES[t].blurb)}</p>
-        ${list.map(paperHTML).join("")}
-      </div>`;
-    }
-    root.innerHTML = html;
+  function wireAbstracts(root) {
     root.addEventListener("click", (e) => {
       const b = e.target.closest("[data-toggle=abs]");
       if (!b) return;
-      const box = b.closest(".paper").querySelector(".abstract");
-      box.classList.toggle("open");
+      b.closest(".paper").querySelector(".abstract").classList.toggle("open");
     });
+  }
+
+  function themeBlock(t) {
+    const list = PAPERS.filter((p) => p.theme === t).sort((a, b) => b.year - a.year);
+    if (!list.length) return "";
+    return `<div class="theme-block" id="${t}" data-theme="${t}">
+      <div class="theme-head"><h2>${esc(THEMES[t].name)}</h2><span class="muted small">${list.length} paper${list.length > 1 ? "s" : ""}</span></div>
+      <p class="blurb muted">${esc(THEMES[t].blurb)}</p>
+      ${list.map(paperHTML).join("")}
+    </div>`;
+  }
+
+  function renderResearch(root) {
+    const main = Object.keys(THEMES).filter((t) => THEMES[t].group === "main");
+    const other = Object.keys(THEMES).filter((t) => THEMES[t].group !== "main");
+    let html = main.map(themeBlock).join("");
+    html += `<div class="theme-head" id="other" style="margin-top:64px;border-top:2px solid var(--line);padding-top:40px"><h2 style="font-size:1.4rem;color:var(--muted)">Other work</h2></div>`;
+    html += other.map(themeBlock).join("");
+    root.innerHTML = html;
+    wireAbstracts(root);
   }
 
   function wireFilters(bar, root) {
@@ -69,33 +81,29 @@
       if (!b) return;
       $$("button", bar).forEach((x) => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
       const t = b.dataset.theme;
-      $$(".theme-block", root).forEach((blk) => {
-        blk.style.display = (t === "all" || blk.dataset.theme === t) ? "" : "none";
-      });
+      $$(".theme-block", root).forEach((blk) => { blk.style.display = (t === "all" || blk.dataset.theme === t) ? "" : "none"; });
+      const oh = $("#other", root); if (oh) oh.style.display = (t === "all" || THEMES[t].group !== "main") ? "" : "none";
     });
   }
 
   function renderFeatured(root, ids) {
     root.innerHTML = ids.map((id) => PAPERS.find((p) => p.id === id)).filter(Boolean).map(paperHTML).join("");
-    root.addEventListener("click", (e) => {
-      const b = e.target.closest("[data-toggle=abs]");
-      if (!b) return;
-      b.closest(".paper").querySelector(".abstract").classList.toggle("open");
-    });
+    wireAbstracts(root);
   }
 
-  function renderThemeCards(root) {
-    const glyphs = {
-      rmtdl: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 52 C 12 52, 14 10, 24 10 S 36 52, 44 52 S 56 30, 60 30"/><circle cx="56" cy="20" r="3" fill="currentColor"/></svg>',
-      rmt: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="32" cy="32" r="22"/><g fill="currentColor" stroke="none"><circle cx="20" cy="28" r="1.6"/><circle cx="30" cy="40" r="1.6"/><circle cx="38" cy="22" r="1.6"/><circle cx="44" cy="36" r="1.6"/><circle cx="26" cy="18" r="1.6"/><circle cx="36" cy="46" r="1.6"/><circle cx="58" cy="12" r="2.4"/></g></svg>',
-      dyn: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 56 C 8 20, 56 44, 56 8"/><path d="M8 8 C 20 40, 44 24, 56 56"/></svg>',
-      top: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 32a20 20 0 1 0 40 0a20 20 0 1 0-40 0"/><path d="M22 32a10 6 0 1 0 20 0a10 6 0 1 0-20 0"/><path d="M8 32h8M48 32h8"/></svg>',
-      comb: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M32 6 L58 56 H6 Z"/><path d="M32 6 L32 56 M19 31 H45 M6 56 L45 31 M58 56 L19 31"/></svg>'
-    };
-    root.innerHTML = Object.keys(THEMES).map((t) => {
+  const GLYPH = {
+    rmtdl: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 52 C 12 52, 14 10, 24 10 S 36 52, 44 52 S 56 30, 60 30"/><circle cx="56" cy="20" r="3" fill="currentColor"/></svg>',
+    rmt: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="32" cy="32" r="22"/><g fill="currentColor" stroke="none"><circle cx="20" cy="28" r="1.6"/><circle cx="30" cy="40" r="1.6"/><circle cx="38" cy="22" r="1.6"/><circle cx="44" cy="36" r="1.6"/><circle cx="26" cy="18" r="1.6"/><circle cx="36" cy="46" r="1.6"/><circle cx="58" cy="12" r="2.4"/></g></svg>',
+    top: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 32a20 20 0 1 0 40 0a20 20 0 1 0-40 0"/><path d="M22 32a10 6 0 1 0 20 0a10 6 0 1 0-20 0"/><path d="M8 32h8M48 32h8"/></svg>',
+    dyn: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 56 C 8 20, 56 44, 56 8"/><path d="M8 8 C 20 40, 44 24, 56 56"/></svg>',
+    comb: '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M32 6 L58 56 H6 Z"/><path d="M32 6 L32 56 M19 31 H45 M6 56 L45 31 M58 56 L19 31"/></svg>'
+  };
+
+  function renderThemeCards(root, group) {
+    root.innerHTML = Object.keys(THEMES).filter((t) => THEMES[t].group === group).map((t) => {
       const n = PAPERS.filter((p) => p.theme === t).length;
       return `<a class="card theme" href="research.html#${t}" style="color:inherit">
-        <div class="glyph">${glyphs[t]}</div>
+        <div class="glyph">${GLYPH[t]}</div>
         <div class="count">${n} paper${n > 1 ? "s" : ""}</div>
         <h3>${esc(THEMES[t].name)}</h3>
         <p class="small muted" style="margin:0">${esc(THEMES[t].blurb)}</p>
@@ -103,26 +111,32 @@
     }).join("");
   }
 
+  function renderCode(root) {
+    if (typeof CODE === "undefined") return;
+    root.innerHTML = CODE.map((c) => `<li><span class="when">code</span><span class="what"><a href="${esc(c.url)}" target="_blank" rel="noopener"><b>${esc(c.name)}</b></a><span class="small">${esc(c.what)}</span></span></li>`).join("");
+  }
+
   function renderVideos(root) {
     const byPaper = {};
     (typeof VIDEOS !== "undefined" ? VIDEOS : []).forEach((v) => { byPaper[v.paper] = v; });
-    const list = PAPERS.slice().sort((a, b) => b.year - a.year);
+    const order = Object.keys(THEMES);
+    const list = PAPERS.slice().sort((a, b) => (order.indexOf(a.theme) - order.indexOf(b.theme)) || (b.year - a.year));
     root.innerHTML = list.map((p) => {
       const v = byPaper[p.id];
       const frame = v
         ? `<iframe src="https://www.youtube-nocookie.com/embed/${esc(v.youtube)}" title="${esc(v.title || p.title)}" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>`
-        : `<div class="soon"><span class="big">&#9654;</span>talk coming</div>`;
+        : `<div class="soon"><span class="big">&#9654;</span>in preparation</div>`;
       return `<div class="video"><div class="frame">${frame}</div><div class="body">
         <h3>${esc(p.title)}</h3><span class="small">${esc(p.year)} &middot; <a href="research.html#p-${esc(p.id)}">paper</a></span></div></div>`;
     }).join("");
   }
 
-  /* ---------- hero: a living Marchenko-Pastur spectrum ---------- */
+  /* ---------- hero: a Marchenko-Pastur spectrum ---------- */
   function spectrum(canvas) {
     const ctx = canvas.getContext("2d");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let W = 0, H = 0, dpr = 1, pts = [], spikes = [], mouse = { x: -1, y: -1 }, t = 0;
-    const c = 0.35;                       // aspect ratio n/m of the underlying matrix
+    const c = 0.35;
     const lm = (1 - Math.sqrt(c)) ** 2, lp = (1 + Math.sqrt(c)) ** 2;
     const dens = (x) => (x <= lm || x >= lp) ? 0 : Math.sqrt((lp - x) * (x - lm)) / (2 * Math.PI * c * x);
     let dmax = 0; for (let x = lm; x <= lp; x += 0.001) dmax = Math.max(dmax, dens(x));
@@ -137,31 +151,28 @@
     function seed() {
       pts = []; spikes = [];
       const N = Math.round(Math.min(900, W * 0.7));
-      while (pts.length < N) {                           // rejection-sample the MP law
+      while (pts.length < N) {
         const x = lm + Math.random() * (lp - lm), y = Math.random() * dmax;
-        if (y < dens(x)) pts.push({ x, y: y / dmax, hx: x, hy: y / dmax, r: 1 + Math.random() * 1.4, ph: Math.random() * 6.28 });
+        if (y < dens(x)) pts.push({ x, y: y / dmax, r: 1 + Math.random() * 1.4, ph: Math.random() * 6.28 });
       }
       for (let i = 0; i < 4; i++) spikes.push({ x: lp + 0.35 + i * 0.5 + Math.random() * 0.3, y: 0.06 + Math.random() * 0.1, r: 2.6 });
     }
     const X = (x) => 40 + (x / (lp + 2.6)) * (W - 80);
-    const Y = (y) => H - 26 - y * (H * 0.34);
+    const Y = (y) => H - 26 - y * (H * 0.29);
     const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 
     function draw() {
       const ink = css("--ink"), acc = css("--accent"), sp = css("--spike"), mut = css("--muted");
       ctx.clearRect(0, 0, W, H);
-      // density curve
       ctx.beginPath();
       for (let x = lm; x <= lp; x += 0.004) { const px = X(x), py = Y(dens(x) / dmax); x === lm ? ctx.moveTo(px, py) : ctx.lineTo(px, py); }
       ctx.strokeStyle = acc; ctx.globalAlpha = 0.45; ctx.lineWidth = 1.2; ctx.stroke();
-      // baseline + edge marks
       ctx.globalAlpha = 0.35; ctx.strokeStyle = mut; ctx.lineWidth = 1;
       ctx.beginPath(); ctx.moveTo(30, Y(0) + 8); ctx.lineTo(W - 30, Y(0) + 8); ctx.stroke();
       ctx.globalAlpha = 0.6; ctx.fillStyle = mut; ctx.font = "11px ui-monospace, Menlo, monospace";
       ctx.fillText("λ₋", X(lm) - 6, Y(0) + 22); ctx.fillText("λ₊", X(lp) - 6, Y(0) + 22);
       ctx.fillText("bulk (noise)", X((lm + lp) / 2) - 34, Y(0) + 22);
       ctx.fillText("outliers (signal)", X(lp + 0.9) - 30, Y(0) + 22);
-      // bulk points
       ctx.fillStyle = ink;
       for (const p of pts) {
         const wob = reduce ? 0 : 0.012 * Math.sin(t * 0.9 + p.ph);
@@ -169,7 +180,6 @@
         ctx.globalAlpha = 0.28 + 0.5 * p.y;
         ctx.beginPath(); ctx.arc(px, py, p.r, 0, 6.28); ctx.fill();
       }
-      // spikes: pulled by the pointer, otherwise drifting home
       ctx.fillStyle = sp;
       for (const s of spikes) {
         let tx = s.x;
@@ -194,11 +204,12 @@
   document.addEventListener("DOMContentLoaded", () => {
     const r = $("#research-list"); if (r) { renderResearch(r); const f = $("#filters"); if (f) wireFilters(f, r); }
     const feat = $("#featured"); if (feat) renderFeatured(feat, feat.dataset.ids.split(","));
-    const tc = $("#theme-cards"); if (tc) renderThemeCards(tc);
+    const tc = $("#theme-cards"); if (tc) renderThemeCards(tc, "main");
+    const to = $("#theme-cards-other"); if (to) renderThemeCards(to, "other");
+    const cd = $("#code-list"); if (cd) renderCode(cd);
     const v = $("#video-grid"); if (v) renderVideos(v);
     const cv = $("#hero-canvas"); if (cv) spectrum(cv);
-    const n = $("#paper-count"); if (n) n.textContent = PAPERS.length;
-    // deep link to a theme block
-    if (location.hash && r) { const el = document.getElementById(location.hash.slice(1)); if (el) setTimeout(() => el.scrollIntoView({ block: "start" }), 50); }
+    $$("a[data-channel]").forEach((a) => { a.href = CHANNEL_URL; });
+    if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) setTimeout(() => el.scrollIntoView({ block: "start" }), 80); }
   });
 })();
