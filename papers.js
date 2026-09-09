@@ -200,7 +200,7 @@ const PAPERS = [
 
   // ---------- dynamical systems ----------
   {
-    id: "1706.08960", theme: "dyn", year: 2018,
+    id: "1706.08960", theme: "top", year: 2018,
     title: "Combinatorial approach to detection of fixed points, periodic orbits, and symbolic dynamics",
     authors: "Marian Gidea, Yitzchak Shmalo",
     venue: "Discrete and Continuous Dynamical Systems 38 (2018), 6123-6148",
@@ -210,7 +210,7 @@ const PAPERS = [
     abstract: "We present a combinatorial approach to rigorously show the existence of fixed points, periodic orbits, and symbolic dynamics in discrete-time dynamical systems, as well as to find numerical approximations of such objects. Our approach relies on the method of correctly aligned windows. We subdivide the correctly aligned windows into cubical complexes, and we assign to the vertices of the cubes labels determined by the dynamics. In this way we encode the information on the dynamics into combinatorial structure. We use a version of the Sperner Lemma saying that if the labeling satisfies certain conditions, then there exist fixed points/periodic orbits/orbits with prescribed itineraries. The method developed here does not require the computation of algebraic topology-type invariants, as only combinatorial information is needed; our arguments are elementary."
   },
   {
-    id: "dense-chaos", theme: "dyn", year: 2026,
+    id: "dense-chaos", theme: "top", year: 2026,
     title: "Dense simultaneous distributional chaos and infinite entropy in the full space of non-autonomous interval systems",
     authors: "Yitzchak Shmalo",
     venue: "Preprint (ResearchGate)",
@@ -219,7 +219,7 @@ const PAPERS = [
     abstract: "Let F(I) be the full space of non-autonomous interval systems with the uniform metric. A recent problem of Balibrea and Rucki asks whether distributional chaos of all types can occur simultaneously and generically. We show that systems exhibiting simultaneous distributional chaos together with infinite topological entropy form a dense subset."
   },
   {
-    id: "moving-horseshoes", theme: "dyn", year: 2026,
+    id: "moving-horseshoes", theme: "top", year: 2026,
     title: "Strict moving horseshoes and generic full complexity in non-autonomous interval systems",
     authors: "Yitzchak Shmalo",
     venue: "Preprint (ResearchGate)",
@@ -228,7 +228,7 @@ const PAPERS = [
     abstract: "We construct strict moving horseshoes for non-autonomous interval systems and show that full complexity, in the sense of distributional chaos and infinite entropy on every tail, holds on a residual subset of the full space."
   },
   {
-    id: "cubical-horseshoes", theme: "dyn", year: 2026,
+    id: "cubical-horseshoes", theme: "top", year: 2026,
     title: "Strict cubical horseshoes and all-tail full complexity in non-autonomous dynamics",
     authors: "Yitzchak Shmalo",
     venue: "Preprint (ResearchGate)",
@@ -237,7 +237,7 @@ const PAPERS = [
     abstract: "For every cube and every compact smooth manifold, and for every sequence of dense open windows, we build strict cubical horseshoes and prove that all-tail full complexity is generic in the corresponding space of non-autonomous systems."
   },
   {
-    id: "universal-windows", theme: "dyn", year: 2026,
+    id: "universal-windows", theme: "top", year: 2026,
     title: "Universal dense-open windows for generic conservative surface semigroups and graph-directed local systems",
     authors: "Yitzchak Shmalo",
     venue: "Preprint (Research Square)",
@@ -246,7 +246,7 @@ const PAPERS = [
     abstract: "We prove a universal dense-open window theorem for generic conservative pairs on a closed orientable surface: there is a residual set of pairs whose generated semigroup is transitive relative to every sequence of dense open windows, and we extend the statement to graph-directed local systems."
   },
   {
-    id: "residual-windows", theme: "dyn", year: 2026,
+    id: "residual-windows", theme: "top", year: 2026,
     title: "Residual windows for partial semigroups and graph-directed conservative dynamics",
     authors: "Yitzchak Shmalo",
     venue: "Preprint",
@@ -304,7 +304,7 @@ const PAPERS = [
 
   // ---------- combinatorics and fixed points ----------
   {
-    id: "1811.08454", theme: "comb", year: 2018,
+    id: "1811.08454", theme: "top", year: 2018,
     title: "Combinatorial proof of Kakutani's fixed point theorem",
     authors: "Yitzchak Shmalo",
     pdf: "1811.08454.pdf", arxiv: "1811.08454",
@@ -312,7 +312,7 @@ const PAPERS = [
     abstract: "We give a combinatorial proof of Kakutani's fixed point theorem for upper semicontinuous set-valued maps with nonempty compact convex values, based on a generalization of Sperner's lemma, avoiding the usual passage through Brouwer's theorem and approximation by single-valued maps."
   },
   {
-    id: "1708.07175", theme: "comb", year: 2017,
+    id: "1708.07175", theme: "top", year: 2017,
     title: "A proof of Atanassov's conjecture and other generalizations of Sperner's lemma",
     authors: "Yitzchak Shmalo",
     pdf: "1708.07175.pdf", arxiv: "1708.07175",
@@ -325,9 +325,7 @@ const PAPERS = [
 const THEMES = {
   rmtdl: { group: "main", name: "Random matrices and deep learning", blurb: "A weight matrix is signal plus noise, and the Marchenko-Pastur law says which part is which. That observation gives pruning methods for networks up to Vision Transformers, theorems on the stability of accuracy and on adversarial examples, and a way to read what training does to a network." },
   rmt:   { group: "main", name: "Random matrices and high-dimensional probability", blurb: "Least singular values of row submatrices and phase retrieval, spikes of growing rank, the Matrix Spencer conjecture for Toeplitz and Hankel families, the moments of their limit laws, and the capacity of the binary perceptron." },
-  top:   { group: "main", name: "Operator algebras, K-theory and topological matter", blurb: "Bulk-boundary correspondence for resonator arrays patterned by a dynamical system, and universal Chern Hamiltonians extended to surfaces with boundary, through the K-theory of C*-algebras and Roe algebras." },
-  dyn:   { group: "other", name: "Dynamical systems", blurb: "Horseshoes, windows and Baire category in the space of non-autonomous systems." },
-  comb:  { group: "other", name: "Combinatorics and fixed points", blurb: "Sperner's lemma and what it carries: Kakutani's theorem, Atanassov's conjecture, and a combinatorial way to locate fixed points." }
+  top:   { group: "main", name: "Operator algebras, K-theory, dynamics and combinatorics", blurb: "Bulk-boundary correspondence for resonator arrays patterned by a dynamical system, and universal Chern Hamiltonians extended to surfaces with boundary, through the K-theory of C*-algebras and Roe algebras. Alongside: horseshoes and Baire category in non-autonomous dynamics, and Sperner-type proofs of fixed-point theorems." }
 };
 
 const THESES = [

@@ -69,8 +69,10 @@
     const main = Object.keys(THEMES).filter((t) => THEMES[t].group === "main");
     const other = Object.keys(THEMES).filter((t) => THEMES[t].group !== "main");
     let html = main.map(themeBlock).join("");
-    html += `<div class="theme-head" id="other" style="margin-top:64px;border-top:2px solid var(--line);padding-top:40px"><h2 style="font-size:1.4rem;color:var(--muted)">Other work</h2></div>`;
-    html += other.map(themeBlock).join("");
+    if (other.length) {
+      html += `<div class="theme-head" id="other" style="margin-top:64px;border-top:2px solid var(--line);padding-top:40px"><h2 style="font-size:1.4rem;color:var(--muted)">Other work</h2></div>`;
+      html += other.map(themeBlock).join("");
+    }
     root.innerHTML = html;
     wireAbstracts(root);
   }
