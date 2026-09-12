@@ -336,7 +336,9 @@ const THESES = [
 
 // Recorded talks and paper videos. Add { paper: "<paper id>", youtube: "<video id>", title: "..." }.
 // Leave the list empty and the videos page shows the "coming soon" cards for every paper.
-const VIDEOS = [];
+const VIDEOS = [
+  { paper: "relu-stability", youtube: "bb93B7Jf41Q", title: "Global stability of deep Gaussian ReLU networks - full lecture" }
+];
 
 const CHANNEL_URL = "https://www.youtube.com/channel/UCsqMyA2aeE-GF_JqE_x_sHg";
 
