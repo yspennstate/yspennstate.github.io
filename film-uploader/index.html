@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tadpole Film Uploader</title>
+<meta name="description" content="Tadpole Film Uploader: a private command-line tool that uploads Yitzchak Shmalo's films and lectures to his own YouTube channel using YouTube API Services.">
+<style>
+  :root { --bg:#fbfaf7; --fg:#1d1d1b; --muted:#5b5a55; --line:#e2dfd6; --link:#1f5fa8; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#161614; --fg:#ecebe6; --muted:#a8a69e; --line:#34332f; --link:#8ab8f0; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:17px/1.6 Georgia, "Times New Roman", serif; }
+  main { max-width:720px; margin:0 auto; padding:48px 20px 64px; }
+  h1 { font-size:2rem; line-height:1.2; margin:0 0 .25em; }
+  h2 { font-size:1.2rem; margin:2em 0 .5em; }
+  p, li { margin:.5em 0; }
+  a { color:var(--link); }
+  .sub { color:var(--muted); margin-top:0; }
+  nav.links { display:flex; flex-wrap:wrap; gap:8px 20px; padding:14px 0; margin:24px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); font-family:system-ui, sans-serif; font-size:15px; }
+  footer { margin-top:48px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:15px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Tadpole Film Uploader</h1>
+  <p class="sub">A private upload tool for one educational YouTube channel</p>
+
+  <nav class="links" aria-label="Policies">
+    <a href="privacy.html">Privacy policy</a>
+    <a href="terms.html">Terms of use</a>
+    <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>
+    <a href="https://www.google.com/policies/privacy">Google Privacy Policy</a>
+  </nav>
+
+  <h2>What it is</h2>
+  <p>Tadpole Film Uploader is a command-line program that runs on the computer of the channel owner, Yitzchak Shmalo. It uploads his documentaries, lectures and short clips to his own YouTube channel, <a href="https://www.youtube.com/channel/UCsqMyA2aeE-GF_JqE_x_sHg">UCsqMyA2aeE-GF_JqE_x_sHg</a>, and then:</p>
+  <ul>
+    <li>sets each video's thumbnail,</li>
+    <li>adds the caption track made from the narration,</li>
+    <li>places the video in its playlists,</li>
+    <li>sets or corrects its title, description and tags.</li>
+  </ul>
+
+  <h2>YouTube API Services</h2>
+  <p>Tadpole Film Uploader uses YouTube API Services. By using it you agree to be bound by the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>. Google's handling of your data is described in the <a href="https://www.google.com/policies/privacy">Google Privacy Policy</a>, and this tool's handling of it in our <a href="privacy.html">privacy policy</a>.</p>
+
+  <h2>Who can use it</h2>
+  <p>No one else. The tool is not offered to the public, has no sign-up and no web interface, and acts only on the channel above. It reads no other channel's data.</p>
+
+  <h2>Sign-in and removing access</h2>
+  <p>The tool signs in with Google (OAuth 2.0). Google shows a consent screen listing the permissions requested, and the tool can act on the channel only after the owner approves. Access can be removed at any time on the Google Account permissions page, <a href="https://security.google.com/settings/security/permissions">security.google.com/settings/security/permissions</a>, by choosing Tadpole Film Uploader and removing its access.</p>
+
+  <h2>Contact</h2>
+  <p>Yitzchak Shmalo, <a href="mailto:tadpole0d@gmail.com">tadpole0d@gmail.com</a></p>
+
+  <footer>
+    <a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of use</a> · <a href="https://yspennstate.github.io/">yspennstate.github.io</a>
+  </footer>
+</main>
+</body>
+</html>
