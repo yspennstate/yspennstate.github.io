@@ -4,9 +4,9 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Yitzchak Shmalo</title>
-<meta content="Yitzchak Shmalo, mathematician at the Einstein Institute of Mathematics, Hebrew University of Jerusalem. Random matrix theory, deep learning, operator algebras and K-theory, and AI for open problems." name="description"/>
+<meta content="Yitzchak Shmalo, mathematician at the Einstein Institute of Mathematics, Hebrew University of Jerusalem. Developer of Math Brain, a shared, auditable memory for AI agents doing mathematical research. Random matrix theory, deep learning and probability." name="description"/>
 <meta content="Yitzchak Shmalo" property="og:title"/>
-<meta content="Random matrices, deep learning, operator algebras, and AI that does mathematics." property="og:description"/>
+<meta content="Math Brain: shared, auditable memory for AI agents doing mathematics. Random matrices and deep learning." property="og:description"/>
 <meta content="assets/portrait_square.jpg" property="og:image"/>
 
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -32,7 +32,7 @@
   <img class="headshot" src="assets/portrait.jpg" alt="Yitzchak Shmalo" width="144" height="144">
   <div><h1>Yitzchak Shmalo</h1>
   <p class="position">Postdoctoral researcher<br>Einstein Institute of Mathematics, Hebrew University of Jerusalem</p>
-  <p>I work on random matrix theory and deep learning, high-dimensional probability, operator algebras and K-theory.</p>
+  <p>I build Math Brain, a shared memory for AI agents that do mathematical research. I also work on random matrix theory and deep learning, high-dimensional probability, operator algebras and K-theory.</p>
   <ul class="links">
 <li><a href="https://arxiv.org/search/?searchtype=author&amp;query=Shmalo%2C+Yitzchak" rel="noopener" target="_blank">arXiv</a></li>
 <li><a href="https://scholar.google.com/citations?user=wV2TqwsAAAAJ" rel="noopener" target="_blank">Google Scholar</a></li>
@@ -43,6 +43,17 @@
 <li><a href="mailto:Yitzchak.Shmalo@mail.huji.ac.il">Email</a></li>
 </ul></div>
 </header>
+<section class="section wrap" id="math-brain">
+  <h2>Math Brain</h2>
+  <p>Agents that do research mathematics lose their work when a session ends: a counterexample found in one session is unknown to the next agent that takes up the same problem. Math Brain keeps that work. It is a store of mathematical cards joined by typed links, about 13,000 cards in October 2026. The cards hold definitions, theorems with their exact hypotheses, sources, and the agents' own proofs, counterexamples, computations and corrected statements. Agents read it through a recall tool and through a hook that serves a few cards on each prompt. New cards are admitted only when a held-out recall test shows they cost no answer. Every revision is kept, so the record can be audited.</p>
+  <p>The tests were paired: same model, same budget, same questions. On 1,000 questions whose answers are in the store, agents with the memory answered all 1,000; agents without it answered 538. On 100 questions about results in the store, agents scored 0 with no tools, 75 with text search over the files and 83 with the recall tool. The paper reports the nulls and losses too. There was no significant gain over agents that had the documents and a recall tool, and none on thirteen new open problems.</p>
+  <ul class="links">
+<li><a href="https://github.com/yspennstate/math-brain-public" rel="noopener" target="_blank">Code and data on GitHub</a></li>
+<li><a href="https://github.com/yspennstate/math-brain-public/tree/main/papers/math-brain-2026-10-24" rel="noopener" target="_blank">Paper (open access)</a></li>
+<li><a href="https://vanillabrain.ai" rel="noopener" target="_blank">Vanilla Brain, the consumer version</a></li>
+<li><a href="ai.html">AI and open problems</a></li>
+</ul>
+</section>
 <section class="section wrap">
   <h2>Selected papers</h2>
   <div id="featured" data-ids="2310.03165,2606.02608,2607.06249,2607.11010,relu-stability,1805.10629"></div>
@@ -50,7 +61,7 @@
 </section>
 <section class="section wrap" id="current">
   <h2>Current projects</h2>
-  <p>I’m developing a persistent memory system for <a href="ai.html">AI-assisted mathematical research</a> and recording <a href="videos.html">lectures on my papers</a>.</p>
+  <p>I’m extending <a href="#math-brain">Math Brain</a> from memory to agency, so that agents can choose subproblems, keep a record of their failures and revise their plans over long campaigns. I’m also recording <a href="videos.html">lectures on my papers</a>.</p>
 </section>
 <section class="section wrap" id="about">
   <h2>Background</h2>
