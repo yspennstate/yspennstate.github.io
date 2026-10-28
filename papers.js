@@ -205,7 +205,7 @@ const PAPERS = [
     title: "Combinatorial approach to detection of fixed points, periodic orbits, and symbolic dynamics",
     authors: "Marian Gidea, Yitzchak Shmalo",
     venue: "Discrete and Continuous Dynamical Systems 38 (2018), 6123-6148",
-    pdf: "1706.08960.pdf", arxiv: "1706.08960",
+    pdf: "1706.08960.pdf", arxiv: "1706.08960", doi: "10.3934/dcds.2018264",
     rg: "https://www.researchgate.net/publication/317955140",
     note: "Find fixed points and horseshoes in a chaotic map by drawing pictures: a Sperner-type argument replaces index theory.",
     abstract: "We present a combinatorial approach to rigorously show the existence of fixed points, periodic orbits, and symbolic dynamics in discrete-time dynamical systems, as well as to find numerical approximations of such objects. Our approach relies on the method of correctly aligned windows. We subdivide the correctly aligned windows into cubical complexes, and we assign to the vertices of the cubes labels determined by the dynamics. In this way we encode the information on the dynamics into combinatorial structure. We use a version of the Sperner Lemma saying that if the labeling satisfies certain conditions, then there exist fixed points/periodic orbits/orbits with prescribed itineraries. The method developed here does not require the computation of algebraic topology-type invariants, as only combinatorial information is needed; our arguments are elementary."
