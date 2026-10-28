@@ -124,7 +124,8 @@ const PAPERS = [
     id: "2607.06249", theme: "rmt", year: 2026,
     title: "Extreme least singular values of Gaussian row submatrices and a phase retrieval stability problem",
     authors: "Yitzchak Shmalo",
-    pdf: "2607.06249.pdf", arxiv: "2607.06249",
+    venue: "Bulletin of the Australian Mathematical Society (2026), published online 14 October 2026",
+    pdf: "2607.06249.pdf", arxiv: "2607.06249", doi: "10.1017/S0004972726101713",
     note: "Among all ways to choose rows of a Gaussian matrix, how small can the smallest singular value be made? Sharp exponent, and what it says about phase retrieval.",
     abstract: "We determine the exponential rate at which the least singular value of an N by m Gaussian matrix can be driven to zero by an adversarial choice of a fraction of its rows, and relate this coordinate-optimized least singular value to the stability constant of phase retrieval. The rate is expressed through the binary entropy of the retained fraction and the dimension of the field."
   },

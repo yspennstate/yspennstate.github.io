@@ -28,3 +28,4 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding:22px 0;color:var
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#e6e7e9;--muted:#b1b7bf;--paper:#17191c;--line:#373b41;--link:#8fb8df;color-scheme:dark}.brain-pre{background:#21242a}}
 :root[data-theme=dark]{--ink:#e6e7e9;--muted:#b1b7bf;--paper:#17191c;--line:#373b41;--link:#8fb8df;color-scheme:dark}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.status{display:inline-block;font-size:.72rem;letter-spacing:.02em;padding:0 .45em;margin-right:.35em;border:1px solid var(--line);border-radius:3px;color:var(--muted);vertical-align:1px}.status.refereed{border-color:var(--link);color:var(--link)}

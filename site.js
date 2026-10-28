@@ -39,12 +39,20 @@
         <div>
           <h3>${esc(p.title)}</h3>
           <div class="authors">${boldSelf(p.authors)}</div>
-          ${p.venue ? `<div class="venue">${esc(p.venue)}</div>` : (p.arxiv ? `<div class="venue">arXiv:${esc(p.arxiv)}</div>` : "")}
+          ${p.venue ? `<div class="venue">${status(p)}${esc(p.venue)}</div>` : (p.arxiv ? `<div class="venue">${status(p)}arXiv:${esc(p.arxiv)}</div>` : "")}
 
           <div class="actions">${acts.join("")}</div>
           ${abs ? `<div class="abstract" id="abs-${esc(p.id)}"><span class="lbl">${label}</span>${esc(abs)}</div>` : ""}
         </div>
       </article>`;
+  }
+
+  // Journal papers say so; everything else is marked as a preprint.
+  function status(p) {
+    const v = p.venue || "";
+    if (/^Ph\.D\./.test(v)) return "";
+    const pub = v && !/^Preprint/.test(v);
+    return `<span class="status ${pub ? "refereed" : "preprint"}">${pub ? "Peer-reviewed" : "Preprint"}</span> `;
   }
 
   function wireAbstracts(root) {
