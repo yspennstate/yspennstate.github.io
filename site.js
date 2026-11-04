@@ -1,4 +1,4 @@
-/* Paper rendering, filters, video cards, and the hero spectrum. */
+/* Paper rendering, filters, and the hero spectrum. */
 
 (function () {
   const $ = (s, r) => (r || document).querySelector(s);
@@ -31,7 +31,6 @@
     if (rg) acts.push(`<a href="${esc(rg)}" target="_blank" rel="noopener">ResearchGate</a>`);
     if (lk.ssrn) acts.push(`<a href="${esc(lk.ssrn)}" target="_blank" rel="noopener">SSRN</a>`);
     if (lk.rsq) acts.push(`<a href="${esc(lk.rsq)}" target="_blank" rel="noopener">Research Square</a>`);
-    if (p.video) acts.push(`<a href="https://www.youtube.com/watch?v=${esc(p.video)}" target="_blank" rel="noopener">Video</a>`);
     if (abs) acts.push(`<button type="button" data-toggle="abs" aria-expanded="false" aria-controls="abs-${esc(p.id)}">${label}</button>`);
     return `
       <article class="paper" data-theme="${esc(p.theme)}" id="p-${esc(p.id)}">
@@ -119,21 +118,6 @@
     root.innerHTML = CODE.map((c) => `<li><span class="when">code</span><span class="what"><a href="${esc(c.url)}" target="_blank" rel="noopener"><b>${esc(c.name)}</b></a><span class="small">${esc(c.what)}</span></span></li>`).join("");
   }
 
-  function renderVideos(root) {
-    const byPaper = {};
-    (typeof VIDEOS !== "undefined" ? VIDEOS : []).forEach((v) => { byPaper[v.paper] = v; });
-    const order = Object.keys(THEMES);
-    const list = PAPERS.filter((p) => byPaper[p.id] && /^[A-Za-z0-9_-]{11}$/.test(byPaper[p.id].youtube)).sort((a, b) => (order.indexOf(a.theme) - order.indexOf(b.theme)) || (b.year - a.year));
-    root.innerHTML = list.map((p) => {
-      const v = byPaper[p.id];
-      const frame = v
-        ? `<iframe src="https://www.youtube-nocookie.com/embed/${esc(v.youtube)}" title="${esc(v.title || p.title)}" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>`
-        : `<div class="soon"><span class="big">&#9654;</span>in preparation</div>`;
-      return `<div class="video"><div class="frame">${frame}</div><div class="body">
-        <h3>${esc(p.title)}</h3><span class="small">${esc(p.year)} &middot; <a href="research.html#p-${esc(p.id)}">paper</a></span></div></div>`;
-    }).join("");
-  }
-
   /* ---------- hero: a Marchenko-Pastur spectrum ---------- */
   function spectrum(canvas) {
     const ctx = canvas.getContext("2d");
@@ -210,9 +194,7 @@
     const tc = $("#theme-cards"); if (tc) renderThemeCards(tc, "main");
     const to = $("#theme-cards-other"); if (to) renderThemeCards(to, "other");
     const cd = $("#code-list"); if (cd) renderCode(cd);
-    const v = $("#video-grid"); if (v) renderVideos(v);
     const cv = $("#hero-canvas"); if (cv) spectrum(cv);
-    $$("a[data-channel]").forEach((a) => { a.href = CHANNEL_URL; });
     if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) setTimeout(() => el.scrollIntoView({ block: "start" }), 80); }
   });
 })();

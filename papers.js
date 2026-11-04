@@ -1,7 +1,7 @@
 // Every paper on the site lives here. Add a new one by copying a block.
 // Fields:  id (unique), title, authors, year, theme, venue (optional),
 //          pdf (file in papers/), arxiv (id, optional), doi (optional),
-//          rg (ResearchGate publication URL, optional), video (YouTube id, optional),
+//          rg (ResearchGate publication URL, optional),
 //          note (one plain-language sentence), abstract.
 // Themes:  rmtdl  = random matrices and deep learning
 //          rmt    = random matrices and high-dimensional probability
@@ -333,14 +333,6 @@ const THESES = [
   { degree: "M.A. in Mathematics", where: "Yeshiva University, 2017", advisor: "Marian Gidea", title: "Combinatorial Approach to Detection of Fixed Points, Periodic Orbits, and Symbolic Dynamics" },
   { degree: "B.A. in Philosophy and Mathematics, magna cum laude", where: "Yeshiva University, 2016", advisor: "Antonella Marini", title: "Proofs of the Cantor-Bernstein Theorem" }
 ];
-
-// Recorded talks and paper videos. Add { paper: "<paper id>", youtube: "<video id>", title: "..." }.
-// Leave the list empty and the videos page shows the "coming soon" cards for every paper.
-const VIDEOS = [
-  { paper: "relu-stability", youtube: "bb93B7Jf41Q", title: "Global stability of deep Gaussian ReLU networks - full lecture" }
-];
-
-const CHANNEL_URL = "https://www.youtube.com/channel/UCsqMyA2aeE-GF_JqE_x_sHg";
 
 // Code and data.
 const CODE = [
